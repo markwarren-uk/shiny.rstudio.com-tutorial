@@ -14,7 +14,8 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   output$hist <- renderPlot({
-    hist(rnorm(input$num), main = isolate(input$title))
+    hist(rnorm(input$num), 
+         main = isolate(input$title))
   })
 }
 

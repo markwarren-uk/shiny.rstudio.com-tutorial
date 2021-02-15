@@ -13,11 +13,25 @@ ui <- fluidPage(
 )
 
 server <- function(input, output) {
+    
+    data <- reactive({
+        rnorm(input$num, mean = input$ave, sd = input$sd)
+    })
+     
+    # output$hist <- renderPlot({
+    #     title <- paste(length(data()), "random normal values", sep = " ")
+    #     xaxis <- paste("Random normal distribution of", length(data()), 
+    #                    "selected values with mean =", round(mean(data()), 0), "and sd =", round(sd(data()), 0), sep = " ")
+    #     hist(data(), breaks = 100, main = title, xlab = xaxis)
+    # })
+    #USING DATA() NEEDED ROUNDING AND COULD GO EITHER WAY SO NOT REPRESENTATVE OF INPUTS 
+    
+    #BETTR OFF USING INPUT VALUES FOR TITLE ETC
     output$hist <- renderPlot({
         title <- paste(input$num, "random normal values", sep = " ")
-        xaxis <- paste("Random normal distribution of", input$num, 
+        xaxis <- paste("Random normal distribution of", input$num,
         "selected values with mean =", input$ave, "and sd =", input$sd, sep = " ")
-        hist(rnorm(input$num, mean = input$ave, sd = input$sd), breaks = 100, main = title, xlab = xaxis)
+        hist(data(), breaks = 100, main = title, xlab = xaxis)
     })
 }
 

@@ -3,10 +3,10 @@
 library(shiny)
 
 ui <- fluidPage(
-  sliderInput(inputId = "num", 
+  sliderInput(inputId = "num", #first input
     label = "Choose a number", 
     value = 25, min = 1, max = 100),
-  textInput(inputId = "title", 
+  textInput(inputId = "title", #second input
     label = "Write a title",
     value = "Histogram of Random Normal Values"),
   plotOutput("hist")

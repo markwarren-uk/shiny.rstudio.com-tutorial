@@ -12,14 +12,14 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   
-  data <- reactive({
+  data <- reactive({   #reactive builds a reactive expression (object) - build it once
     rnorm(input$num)
   })
   
-  output$hist <- renderPlot({
-    hist(data())
+  output$hist <- renderPlot({  #access reactive once
+    hist(data())  #call this as a function e.g. data()
   })
-  output$stats <- renderPrint({
+  output$stats <- renderPrint({  #access reactive twice
     summary(data())
   })
 }
